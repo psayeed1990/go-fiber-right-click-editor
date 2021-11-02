@@ -18,11 +18,12 @@
         ></iframe>
 
         <div id="right-menu">
-            <form method="POST" action="/change-iframe">
+            <form method="POST" action="/change-iframe" onsubmit="submit">
                 <textarea
                     id="change-content"
                     type="text"
                     placeholder="Change content"
+                    name="content"
                 ></textarea>
 
                 <input type="submit" value="Change Now" />
