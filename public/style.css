@@ -8,3 +8,16 @@ iframe {
     border: 2px solid #038f31;
     margin: 40px;
 }
+
+#right-menu {
+    background: white;
+    width: 200px;
+    padding: 20px;
+    border: 1px solid #bdb3b3;
+    box-shadow: 0 0 3px #999;
+    list-style: none;
+    top: 50%;
+    left: 40%;
+    position: absolute;
+    display: none;
+}

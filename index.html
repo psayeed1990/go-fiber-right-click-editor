@@ -4,11 +4,124 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link href="/style.css" rel="stylesheet" />
+        <link href="/style.css" rel="stylesheet" type="text/css" />
         <title>Right Click Editor</title>
     </head>
     <body>
         <h1>Let's do it</h1>
-        <iframe src="/iframe" width="500" height="600"></iframe>
+        <iframe
+            src="/iframe"
+            width="500"
+            height="600"
+            onload="addRightClick()"
+            id="iframe"
+        ></iframe>
+
+        <div id="right-menu">
+            <form method="POST" action="/change-iframe">
+                <textarea
+                    id="change-content"
+                    type="text"
+                    placeholder="Change content"
+                ></textarea>
+
+                <input type="submit" value="Change Now" />
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            //get iframe
+            const iframe = document.getElementById("iframe");
+            const rightMenu = document.getElementById("right-menu");
+
+            //grab all element of a doc
+            const elementArrayList = [
+                "address",
+                "p",
+                "label",
+                "button",
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "span",
+                "a",
+                "b",
+                "em",
+                "i",
+                "strong",
+                "small",
+                "sup",
+                "mark",
+                "del",
+                "ins",
+                "sub",
+                "blockquote",
+                "abbr",
+                "cite",
+                "q",
+                "tr",
+                "th",
+                "td",
+                "dt",
+                "dd",
+                "img",
+                "li",
+            ];
+
+            const RightClickEventHandler = (e) => {
+                e.preventDefault();
+                window.event.returnValue = false;
+
+                const elm = e.currentTarget;
+
+                //get the content
+                const content = document.getElementById("change-content");
+
+                content.innerHTML = elm.innerHTML;
+
+                //show add box
+                rightMenu.style.display = "block";
+            };
+
+            //add rightclick handler
+            const addRightClick = (e) => {
+                const doc = iframe.contentDocument
+                    ? iframe.contentDocument
+                    : iframe.contentWindow.document;
+                //const elements = doc.body.getElementsByTagName('*');
+
+                elementArrayList.forEach((elems) => {
+                    const allElements = doc.body.getElementsByTagName(elems);
+                    for (var i = 0; i < allElements.length; i++) {
+                        const element = allElements[i];
+
+                        //mouse enter and leave functions
+                        //element.addEventListener('mouseover', mouseOverFunction);
+                        //element.addEventListener('mouseleave', mouseLeaveFunction);
+
+                        //hide editor options
+                        //element.addEventListener('click', hideEditorOptions);
+
+                        if (doc.addEventListener) {
+                            console.log("rr");
+                            element.addEventListener(
+                                "contextmenu",
+                                RightClickEventHandler,
+                                false
+                            );
+                        } else {
+                            console.log("rr");
+                            element.attachEvent(
+                                "oncontextmenu",
+                                RightClickEventHandler
+                            );
+                        }
+                    }
+                });
+            };
+        </script>
     </body>
 </html>

@@ -6,17 +6,18 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 func main() {
-  app := fiber.New()
 
-  app.Static("/", filepath.Base("public"))
+	app := fiber.New()
 
-  app.Get("/", func(c *fiber.Ctx) error {
-    return c.SendFile(filepath.FromSlash("index.html"))
-  })
+	app.Static("/", filepath.Base("public"))
 
-  app.Get("/iframe", func(c *fiber.Ctx) error {
-    return c.SendFile(filepath.FromSlash("iframe.html"))
-  })
+	app.Get("/", func(c *fiber.Ctx) error {
+    	return c.SendFile(filepath.FromSlash("index.html"))
+  	})
 
-  app.Listen(":3000")
+  	app.Get("/iframe", func(c *fiber.Ctx) error {
+    	return c.SendFile(filepath.FromSlash("iframe.html"))
+  	})
+
+  	app.Listen(":3000")
 }
