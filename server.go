@@ -9,6 +9,8 @@ import (
 
 	"strings"
 
+	"os"
+
 	"github.com/gofiber/fiber/v2"
 )
 func main() {
@@ -60,5 +62,9 @@ func main() {
 
   	})
 
-  	app.Listen(":3000")
+	var PORT string
+	if PORT = os.Getenv("PORT"); PORT == "" {
+		PORT = "3001"
+	}
+  	app.Listen(":" + PORT)
 }

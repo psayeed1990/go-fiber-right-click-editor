@@ -1,4 +1,4 @@
-module right-click-edit
+module github.com/psayeed1990/go-fiber-right-click-editor
 
 go 1.17
 
