@@ -18,12 +18,9 @@ func main() {
 	app.Static("/", filepath.Base("public"))
 
 	app.Get("/", func(c *fiber.Ctx) error {
-    	return c.SendFile(filepath.FromSlash("index.html"))
+    	return c.SendFile("/index.html")
   	})
 
-  	app.Get("/iframe", func(c *fiber.Ctx) error {
-    	return c.SendFile(filepath.FromSlash("iframe.html"))
-  	})
 
 	app.Post("/change-iframe", func(c *fiber.Ctx) error {
 		//payload
@@ -37,7 +34,7 @@ func main() {
 		}
 
 		//read iframe file
-		input, err := ioutil.ReadFile(filepath.FromSlash("iframe.html"))
+		input, err := ioutil.ReadFile(filepath.FromSlash("public/iframe.html"))
 		
 		//log error
 		if err != nil {
@@ -54,7 +51,7 @@ func main() {
                 }
         }
         output := strings.Join(lines, "\n")
-        err = ioutil.WriteFile(filepath.FromSlash("iframe.html"), []byte(output), 0644)
+        err = ioutil.WriteFile(filepath.FromSlash("public/iframe.html"), []byte(output), 0644)
         if err != nil {
                 log.Fatalln(err)
         }
