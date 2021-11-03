@@ -56,7 +56,7 @@ func main() {
                 log.Fatalln(err)
         }
 
-		return c.JSON(payload)
+		return c.Redirect("/")
 
   	})
 
