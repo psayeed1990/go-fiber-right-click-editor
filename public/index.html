@@ -76,15 +76,24 @@
                 e.preventDefault();
                 window.event.returnValue = false;
 
-                const elm = e.currentTarget;
+                if (rightMenu.style.display === "block") {
+                    const elm = e.currentTarget;
 
-                //get the content
-                const content = document.getElementById("change-content");
+                    //get the content
+                    const content = document.getElementById("change-content");
 
-                content.innerHTML = elm.innerHTML;
+                    content.innerHTML = elm.innerHTML;
+                } else {
+                    const elm = e.currentTarget;
 
-                //show add box
-                rightMenu.style.display = "block";
+                    //get the content
+                    const content = document.getElementById("change-content");
+
+                    content.innerHTML = elm.innerHTML;
+
+                    //show add box
+                    rightMenu.style.display = "block";
+                }
             };
 
             //add rightclick handler
